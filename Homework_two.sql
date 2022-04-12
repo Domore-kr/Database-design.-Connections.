@@ -8,6 +8,12 @@ create table if not exists Genre (
 	Name varchar(20) not null
 );
 
+create table if not exists Collection (
+	ID serial primary key,
+	Name varchar(20) not null,
+	Year_of_issue integer not null
+);
+
 create table if not exists Musician_Genre (
 	ID serial primary key,
 	Musician_ID integer not null references Musician(ID),
@@ -25,6 +31,12 @@ create table if not exists Track (
 	Name varchar(20) not null,
 	Duration varchar(20) not null,
 	Album_ID integer references Album(ID)
+);
+
+create table if not exists Track_Collection (
+	ID serial primary key,
+	Track_ID integer not null references Track(ID),
+	Collection_ID integer not null references Collection(ID)
 );
 
 create table if not exists Musician_Album (
